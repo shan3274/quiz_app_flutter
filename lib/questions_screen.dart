@@ -22,10 +22,11 @@ class _QuestionsScreen extends State<QuestionsScreen> {
       currentQuestionIndex++;
     });
   }
+  QuizService sr = QuizService();
 
   @override
   Widget build(context) {
-    final currentQuestions = question[currentQuestionIndex];
+    final currentQuestions = sr.question[currentQuestionIndex];
     return Center(
         child: Container(
       margin: const EdgeInsets.all(40),

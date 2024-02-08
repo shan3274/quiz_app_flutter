@@ -4,8 +4,7 @@ import 'package:quize_app/question_summary.dart';
 import 'package:quize_app/quiz.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen(
-      {super.key, required this.answers, required this.onRestart});
+  ResultScreen({super.key, required this.answers, required this.onRestart});
   final List<String> answers;
   final void Function() onRestart;
 
@@ -14,19 +13,20 @@ class ResultScreen extends StatelessWidget {
     for (var i = 0; i < answers.length; i++) {
       summary.add({
         "question_index": i,
-        "question": question[i].text,
-        "correct_answer": question[i].answers[0],
+        "question": sr.question[i].text,
+        "correct_answer": sr.question[i].answers[0],
         "user_answer": answers[i]
       });
     }
     return summary;
   }
 
+  QuizService sr = QuizService();
 // Text(((data['question_index'] as int) + 1).toString()),
   @override
   Widget build(context) {
     final summaryData = getSummaryData();
-    final numTotalQuestion = question.length;
+    final numTotalQuestion = sr.question.length;
     final numCorrectQuestion = summaryData.where((item) {
       return item['user_answer'] == item['correct_answer'];
     }).length;
